@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOOL MOD AOV VIP</title>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.7.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20230929/pngtree-futuristic-sci-fi-background-exploring-the-virtual-reality-metaverse-with-advanced-image_13545089.png');
+            color: #ff0000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #005f73;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .file-label {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #CC9603;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .file-label:hover {
+            background-color: #FF9b07;
+        }
+        .file-label:active {
+            transform: scale(0.98);
+        }
+        input[type="text"] {
+            width: calc(50% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-right: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #38bdf8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #0ea5e9;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        .status {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #10b981;
+            display: none;
+        }
+        .status.show {
+            display: block;
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+        .status.fade {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+.linkdutup2-container, .linkdutup-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.linkdutup2-container {
+    top: 10px;
+    left: 10px;
+}
+.linkdutup-container {
+    top: 10px;
+    right: 10px;
+}
+.linkdutup2, .linkdutup {
+    background-size: cover;
+    background-position: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.linkdutup2 {
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/nhachay-43b11.appspot.com/o/Polish_20240816_003132500.png?alt=media&token=695dd6d8-5c73-403e-8e52-1b5b2fa1cfd7');
+}
+.linkdutup {
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/nhachay-43b11.appspot.com/o/Polish_20240816_003230296.png?alt=media&token=70b571ac-4bfc-4eca-b62f-7c83db2c48e0');
+}
+.linkdutup-text {
+    color: blue;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px lime;
+    margin-top: 5px; 
+    text-align: center;
+}
+        .replacement-pair {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .replacement-pair input {
+            margin-right: 5px;
+        }
+        .remove-pair {
+            background-color: #ef4444;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .remove-pair:hover {
+            background-color: #dc2626;
+        }
+        .remove-pair:active {
+            transform: scale(0.98);
+        }
+        .add-pair {
+            background-color: #00008b;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .add-pair:hover {
+            background-color: #483d83;
+        }
+        .add-pair:active {
+            transform: scale(0.98);
+        }
+        .xml-duplicator {
+            margin-top: 30px;
+        }
+        .xml-duplicator input[type="file"] {
+            margin-bottom: 10px;
+        }
+        .xml-duplicator button {
+            background-color: #007bff;
+            margin-top: 10px;
+        }
+        .xml-duplicator button:hover {
+            background-color: #0056b3;
+        }
+        input, button, select {
+            margin: 10px;
+        }
+        #downloadLink {
+            display: block;
+            margin-top: 20px;
+        }
+        .file-inputs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .file-inputs > div {
+            flex: 1 1 100%;
+            margin-bottom: 20px;
+        }
+        .file-inputs > div:nth-child(2) {
+            margin-bottom: 0;
+        }
+        .file-inputs .current-file {
+            background-color: #cceeff;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .file-inputs .mod-file {
+            background-color: #ffffcc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        label.current-label {
+            color: #0000ff; 
+        }
+        label.mod-label {
+            color: red; 
+        }
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        @media (min-width: 600px) {
+            .file-inputs > div {
+                flex: 1 1 calc(50% - 10px);
+                margin-bottom: 0;
+            }
+            .file-inputs > div:nth-child(2) {
+                margin-left: 20px;
+            }
+        }
+        .modmap-container {
+            margin: 20px;
+            display: inline-block;
+            text-align: center;
+            vertical-align: top;
+        }
+        .modmap-container img {
+            width: 300px;
+            height: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .modmap-container button {
+            margin-top: 0;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 0 0 10px 10px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .modmap-container button:hover {
+            background-color: #0056b3;
+        }
+#lock-screen {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://img.lovepik.com/background/20211021/large/lovepik-network-security-lock-background-image_500470175.jpg');
+    background-color: rgba(0, 0, 0, 0.8); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+#lock-screen h1 {
+    color: yellow; 
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+#lock-screen input {
+    padding: 10px;
+    font-size: 30px;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 2px solid #007bff; 
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s;
+}
+#lock-screen input:focus {
+    border-color: #0056b3; 
+}
+#lock-screen button {
+    padding: 10px 20px;
+    font-size: 30px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+#lock-screen button:hover {
+    background-color: #0056b3;
+}
+#error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
+    </style>
+</head>
+<body>
+<div id="lock-screen">
+        <h1>Vui Lòng Nhập Key Để Truy Cập Web:</h1>
+        <input type="text" id="key-input" placeholder="Nhập Key Tại Đây❤">
+        <button onclick="unlockPage()">Xác Nhận</button>
+        <p id="error-message" style="display: none;">Key Không Chính Xác. Get Key Và Thử Lại.</p>
+    </div>
+    <div class="container">
+        <h1>Mod Tệp Văn Bản Liên Quân</h1>
+        <label for="fileInput" class="file-label">Chọn Tệp Zip</label>
+        <input type="file" id="fileInput" accept=".zip">
+        <div id="replacementContainer">
+            <div class="replacement-pair">
+                <input type="text" placeholder="Chữ Cần Sửa">
+                <input type="text" placeholder="Chữ Thay Thế">
+                <button class="remove-pair" onclick="removePair(this)">Xóa Cặp</button>
+            </div>
+        </div>
+        <button class="add-pair" onclick="addPair()">Thêm Cặp Văn Bản</button>
+        <button onclick="replaceText()">Thay Thế Chữ Và Tải Xuống</button>
+        <p>*lưu ý nhỏ*:không sửa được tệp mã hóa hãy cẩn thận và xóa tệp đó đi.thank</p>
+        <div id="status" class="status">✅ Tệp đã được nhận và đang xử lý</div>
+
+        <div class="xml-duplicator">
+    <h2>Mod Skill Sáng Đậm</h2>
+    <label for="xmlZipInput" class="file-label">Đưa Tệp Zip xml</label>
+    <input type="file" id="xmlZipInput" accept=".zip">
+    
+    <div>
+        <input type="radio" id="onlyTriggerParticleTick" name="modOption" value="TriggerParticleTick" checked>
+        <label for="onlyTriggerParticleTick">•Mod Skill Sáng Đậm Ít Effect(Không Lỗi Mạng.)-triggerparticletick[LỰA CHỌN ỔN ĐỊNH]•</label><br>
+        <input type="radio" id="fullMod" name="modOption" value="both">
+        <label for="fullMod">▪︎Mod Full Skill Effect Sáng Đậm(Không Lỗi Mạng.)-triggerparticletick+triggerparticle[LỰA CHỌN TỐT NHẤT]▪︎</label>
+    </div>
+    
+    <button onclick="processXmlZip()">Xử lý tệp và Tải xuống mod Zip</button>
+    <pre id="xmlOutput"></pre>
+    
+    <h3>MOD SKILL THẬP CẨM</h3>
+    <input type="file" id="xmlZipInput" accept=".zip">
+    
+    <div>
+        <input type="radio" id="onlyTriggerParticleTick2" name="modOption2" value="TriggerParticleTick" checked>
+        <label for="onlyTriggerParticleTick2">•Mod Skill Thập Cẩm Ít Effect(Không Lỗi Mạng.)-triggerparticletick[LỰA CHỌN ỔN ĐỊNH]•</label><br>
+        <input type="radio" id="fullMod2" name="modOption2" value="both">
+        <label for="fullMod2">▪︎Mod Full Skill Effect Thập Cẩm(Không Lỗi Mạng.)-triggerparticletick+triggerparticle[LỰA CHỌN TỐT NHẤT]▪︎</label>
+    </div>
+    
+    <button onclick="processXmlZip2()">Xử lý Và Tải xuống mod thập cẩm</button>
+    <pre id="xmlOutput"></pre>
+</div>
+            <h4>MOD NGOẠI HÌNH TƯỚNG</h4>
+ <label for="fileInput" class="file-label">Chọn Tệp Bytes</label>
+<input type="file" id="fileInput" accept=".bytes">
+    <br>
+    <label for="heroSelect">Lựa Chọn Hero:</label>
+    <select id="heroSelect">
+        <option value="105_LianPo">105_LianPo</option>
+        <option value="106_XiaoQiao">106_XiaoQiao</option>
+        <option value="107_Zhaoyun">107_Zhaoyun</option>
+        <option value="108_MoDi">108_MoDi</option>
+        <option value="109_Daji">109_Daji</option>
+        <option value="110_YingZheng">110_YingZheng</option>
+        <option value="111_SunShangXiang">111_SunShangXiang</option>
+        <option value="112_GongShuBan">112_GongShuBan</option>
+        <option value="113_ZhuangZhou">113_ZhuangZhou</option>
+        <option value="114_Omega">114_Omega</option>
+        <option value="115_GaoJianLi">115_GaoJianLi</option>
+        <option value="116_JingKe">116_JingKe</option>
+        <option value="117_ZhongWuYan">117_ZhongWuYan</option>
+        <option value="118_SunBin">118_SunBin</option>
+        <option value="119_BianQue">119_BianQue</option>
+        <option value="120_BaiQi">120_BaiQi</option>
+        <option value="121_MiYue">121_MiYue</option>
+        <option value="123_LvBu">123_LvBu</option>
+        <option value="124_ZhouYu">124_ZhouYu</option>
+        <option value="126_XiaHouDun">126_XiaHouDun</option>
+        <option value="127_ZhenJi">127_ZhenJi</option>
+        <option value="128_CaoCao">128_CaoCao</option>
+        <option value="129_DianWei">129_DianWei</option>
+        <option value="130_GongBenWuZang">130_GongBenWuZang</option>
+        <option value="131_LiBai">131_LiBai</option>
+        <option value="132_MaKeBoLuo">132_MaKeBoLuo</option>
+        <option value="133_DiRenJie">133_DiRenJie</option>
+        <option value="134_TangSanZang">134_TangSanZang</option>
+        <option value="135_XiangYu">135_XiangYu</option>
+        <option value="136_WuZeTian">136_WuZeTian</option>
+        <option value="137_SiMaYi">137_SiMaYi</option>
+        <option value="139_KongFuZi">139_KongFuZi</option>
+        <option value="140_GuanYu">140_GuanYu</option>
+        <option value="141_Diaochan">141_Diaochan</option>
+        <option value="142_CaiWenJi">142_CaiWenJi</option>
+        <option value="144_ChengYaoJin">144_ChengYaoJin</option>
+        <option value="146_HongFu">146_HongFu</option>
+        <option value="148_JiangZiYa">148_JiangZiYa</option>
+        <option value="149_LiuBang">149_LiuBang</option>
+        <option value="150_HanXin">150_HanXin</option>
+        <option value="152_WangZhaoJun">152_WangZhaoJun</option>
+        <option value="153_LanLingWang">153_LanLingWang</option>
+        <option value="154_HuaMuLan">154_HuaMuLan</option>
+        <option value="156_ZhangLiang">156_ZhangLiang</option>
+        <option value="157_BuZhiHuoWu">157_BuZhiHuoWu</option>
+        <option value="159_Dolia">159_Dolia</option>
+        <option value="162_Nakoruru">162_Nakoruru</option>
+        <option value="163_JuYouJing">163_JuYouJing</option>
+        <option value="166_YaSeWang">166_YaSeWang</option>
+        <option value="167_WuKong">167_WuKong</option>
+        <option value="168_Niu">168_Niu</option>
+        <option value="169_HouYi">169_HouYi</option>
+        <option value="170_LiuBei">170_LiuBei</option>
+        <option value="171_ZhangFei">171_ZhangFei</option>
+        <option value="173_LiYuanFang">173_LiYuanFang</option>
+        <option value="174_YuJi">174_YuJi</option>
+        <option value="175_ZhongKui">175_ZhongKui</option>
+        <option value="177_ChengJiSiHan">177_ChengJiSiHan</option>
+        <option value="180_NeZha">180_NeZha</option>
+        <option value="183_ChessPlayer">183_ChessPlayer</option>
+        <option value="184_CaiWenJi">184_CaiWenJi</option>
+        <option value="186_TaiYiZhenRen">186_TaiYiZhenRen</option>
+        <option value="187_DongHuangTaiYi">187_DongHuangTaiYi</option>
+        <option value="189_GuiGuZi">189_GuiGuZi</option>
+        <option value="190_ZhuGeLiang">190_ZhuGeLiang</option>
+        <option value="191_DaQiao">191_DaQiao</option>
+        <option value="192_HuangZhong">192_HuangZhong</option>
+        <option value="193_LaFeiEr">193_LaFeiEr</option>
+        <option value="194_SuLie">194_SuLie</option>
+        <option value="195_BaiLiXuanCe">195_BaiLiXuanCe</option>
+        <option value="196_Elsu">196_Elsu</option>
+        <option value="199_Li">199_Li</option>
+        <option value="206_XiaLuoTe">206_XiaLuoTe</option>
+        <option value="501_TelAnnas">501_TelAnnas</option>
+        <option value="502_Astrid">502_Astrid</option>
+        <option value="503_Zuka">503_Zuka</option>
+        <option value="504_WonderWoman">504_WonderWoman</option>
+        <option value="505_Baldum">505_Baldum</option>
+        <option value="506_DarkKnight">506_DarkKnight</option>
+        <option value="507_Flash">507_Flash</option>
+        <option value="508_Zhadanren">508_Zhadanren</option>
+        <option value="509_Ybneth">509_Ybneth</option>
+        <option value="510_Liliana">510_Liliana</option>
+        <option value="511_ZhuBaJie">511_ZhuBaJie</option>
+        <option value="512_Rourke">512_Rourke</option>
+        <option value="513_ShuSheng">513_ShuSheng</option>
+        <option value="514_Roxi">514_Roxi</option>
+        <option value="515_Richter">515_Richter</option>
+        <option value="518_Quillen">518_Quillen</option>
+        <option value="519_Annette">519_Annette</option>
+        <option value="520_Veres">520_Veres</option>
+        <option value="521_Florentino">521_Florentino</option>
+        <option value="522_Errol">522_Errol</option>
+        <option value="523_Darcy">523_Darcy</option>
+        <option value="524_Capheny">524_Capheny</option>
+        <option value="525_Driver">525_Driver</option>
+        <option value="526_Summoner">526_Summoner</option>
+        <option value="527_Sephera">527_Sephera</option>
+        <option value="528_DaMo">528_DaMo</option>
+        <option value="529_Volkath">529_Volkath</option>
+        <option value="530_Dirak">530_Dirak</option>
+        <option value="531_Keera">531_Keera</option>
+        <option value="532_Genius">532_Genius</option>
+        <option value="533_HouYi">533_HouYi</option>
+        <option value="534_Grantwish">534_Grantwish</option>
+        <option value="535_Wish">535_Wish</option>
+        <option value="536_Ninja">536_Ninja</option>
+        <option value="537_Trip">537_Trip</option>
+        <option value="538_Iggy">538_Iggy</option>
+        <option value="539_Nott">539_Nott</option>
+        <option value="540_Bright">540_Bright</option>
+        <option value="541_Bonnie">541_Bonnie</option>
+        <option value="542_Tachi">542_Tachi</option>
+        <option value="543_Yao">543_Yao</option>
+        <option value="544_Painter">544_Painter</option>
+        <option value="545_Aim">545_Aim</option>
+        <option value="546_Hecate">546_Hecate</option>
+        <option value="548_SunCe">548_SunCe</option>
+        <option value="566_ChessPlayer">566_ChessPlayer</option>
+        <option value="567_AiLin">567_AiLin</option>
+        <option value="568_MingShiYin">568_MingShiYin</option>
+        <option value="570_ChessPlayer">570_ChessPlayer</option>
+    </select>
+    <br>
+    <label for="skinSelect">Lựa Chọn Skin:</label>
+    <select id="skinSelect">
+        <option value="2">Skin 2</option>
+        <option value="3">Skin 3</option>
+        <option value="4">Skin 4</option>
+        <option value="5">Skin 5</option>
+        <option value="6">Skin 6</option>
+        <option value="7">Skin 7</option>
+        <option value="8">Skin 8</option>
+        <option value="9">Skin 9</option>
+        <option value="10">Skin 10</option>
+        <option value="11">Skin 11</option>
+        <option value="12">Skin 12</option>
+        <option value="13">Skin 13</option>
+        <option value="14">Skin 14</option>
+        <option value="15">Skin 15</option>
+        <option value="16">Skin 16</option>
+        <option value="17">Skin 17</option>
+        <option value="18">Skin 18</option>
+        <option value="19">Skin 19</option>
+        <option value="20">Skin 20</option>
+    </select>
+    <br>
+    <button onclick="modifyFile()">Mod InFo Byte Và Tải xuống</button>
+    <a id="downloadLink" style="display:none">Download Mod File</a>
+        <h5>MOD PACK SKIN LQ</h5>
+    <select id="championSelect">
+        <option value="ModPackA.zip">Mod Full 119 Skin Pack Cực Đẹp</option>
+        <option value="ModPackSadThu.zip">Mod Pack Sát Thủ Đẹp</option>
+        <option value="WiroSơnSkin.zip">Mod Wiro Kình Thiên Zenitsu Genos</option>
+    </select>
+    <button onclick="downloadZip9()">Tải Pack Skin</button>
+        <h6>MOD CHẾ NGOẠI HÌNH TỪ TƯỚNG NÀY SANG TƯỚNG KHÁC</h6>
+        <div class="file-inputs">
+            <div class="current-file">
+                <label class="current-label" for="originalFile">Ngoại Hình Hiện Tại</label>
+                <input type="file" id="originalFile" accept=".bytes">
+            </div>
+            <div class="mod-file">
+                <label class="mod-label" for="modFile">Ngoại Hình Thay Thế</label>
+                <input type="file" id="modFile" accept=".bytes">
+            </div>
+        </div>
+        <button id="modButton">Mod Skin Chế và tải xuống</button>
+        <h7>Mod Cam Xa LQ</h7>
+    <label for="zoomLevel">Chọn Mức Độ Cam Xa:</label>
+    <select id="zoomLevel">
+        <option value="camxa10.zip">Cam xa 10%</option>
+        <option value="camxa20.zip">Cam xa 20%</option>
+        <option value="camxa30.zip">Cam xa 30%</option>
+        <option value="camxa40.zip">Cam xa 40%</option>
+        <option value="camxa50.zip">Cam xa 50%</option>
+        <option value="camxa60.zip">Cam xa 60%</option>
+        <option value="camxa70.zip">Cam xa 70%</option>
+        <option value="camxa80.zip">Cam xa 80%</option>
+        <option value="camxa90.zip">Cam xa 90%</option>
+        <option value="camxa100.zip">Cam xa 100%</option>
+        <option value="ModcamGần.zip">☆Cam Gần Giống Góc Nhìn Thứ Nhất☆</option>
+    </select>
+    <button onclick="downloadModCamXa()">Tải Mod Cam Xa</button>
+    <h8>Mod Bậc Rank AOV</h8>
+    <select id="ModRank-select">
+        <option value="giảm cấm chat Xóa file tố cáo.zip">Hack Giảm Cấm Chat Và Xóa Tố Cáo</option>
+        <option value="">LIÊN HỆ ZALO 0562335641 MUA TOOL MOD FULL 28 RANK TỪ ĐỒNG 3 TỚI THÁCH ĐẤU GIÁ RẺ 25K. Sẽ Không Chia Sẻ Mod Rank Nên Hãy Mua Tool Và Trải Nghiệm❤</option>
+        <option value="">MUA TOOL CÓ ID RANK VÀ HƯỚNG DẪN</option>
+    </select>
+    <button id="download-MODRANK">Tải và Nhận Mod Rank</button>
+    <h9>Đổi Ngôn Ngữ Liên Quân</h9>
+    <ul>
+        <li><a href="Tiếng Việt.zip" download="Tiếng Việt.zip">Tiếng Việt - Vietnamese</a></li>
+        <li><a href="Tiếng Đài Loan.zip" download="Tiếng Đài Loan.zip">Tiếng Đài Loan - TaiWan</a></li>
+        <li><a href="Tiếng Trung Quốc.zip" download="Tiếng Trung Quốc.zip">Tiếng Trung Quốc - China</a></li>
+        <li><a href="Tiếng Thái Lan.zip" download="Tiếng Thái Lan.zip">Tiếng Thái Lan - ThaiLand</a></li>
+        <li><a href="Tiếng Indo.zip" download="Tiếng Indo.zip">Tiếng Indo - Indonesia</a></li>
+        <li><a href="Tiếng Anh.zip" download="Tiếng Anh.zip">Tiếng Anh - EU GLOBAL</a></li>
+        <li><a href="Tiếng Nhật Bản.zip" download="Tiếng Nhật Bản.zip">Tiếng Nhật Bản - Japan</a></li>
+        <li><a href="Tiếng Ấn Độ.zip" download="Tiếng Ấn Độ.zip">Tiếng Ấn Độ - India</a></li>
+        <li><a href="Tiếng Ả Rập.zip" download="Tiếng Ả Rập.zip">Tiếng Ả Rập - Tunisia</a></li>
+    </ul>
+        <h10>Mod Lính, Quái, Trụ Liên Quân</h10>
+    <button onclick="downloadFileModLinhQuaiTru('Lính.zip')">Mod Lính Vệ Thần</button>
+    <button onclick="downloadFileModLinhQuaiTru('Quái.zip')">Mod Quái Vệ Thần</button>
+    <button onclick="downloadFileModLinhQuaiTru('Trụ.zip')">Mod Trụ Vệ THần</button>
+        <h11>Mod Video Sảnh Nền LQ</h11>
+    <button onclick="document.getElementById('videoUpload').click()">Chọn Video Làm Sảnh LQ</button>
+    <input type="file" id="videoUpload" accept="video/mp4" style="display: none;">
+    <button onclick="createModVideosex()">Tải mod sảnh nền</button>
+        <h12>Mod Âm Thanh, Giọng Liên Quân</h12>
+    <button onclick="downloadModSoundAOV('https://drive.google.com/file/d/15S94aSnbRFBvbq0zj3B38nhAksv7OmuS/view?usp=drivesdk')">Mod Sound Giọng Trung Quốc</button><br><br>
+    <button onclick="downloadModSoundAOV('https://drive.google.com/file/d/1zNcRsasLvieNWVM_ESqVRdr6vsuOu8aB/view?usp=drivesdk')">Mod Sound Giọng Thái Lan</button><br><br>
+    <button onclick="downloadModSoundAOV('https://drive.google.com/file/d/1rlaZA_9hhwmZ2F66yIgY3dNS4VUXSofU/view?usp=drivesdk')">Mod Sound Giọng Hàn Quốc</button><br><br>
+    <button onclick="downloadModSoundAOV('https://drive.google.com/file/d/1TRLQ81Rta2g-gH1zXIJo1mgeQJdBjYQT/view?usp=drivesdk')">Mod Sound Giọng Nhật Bản</button><br><br>
+    <p>Sound China,Thailand,Korean By Nhật Lê: <a href="https://youtu.be/N4AfgPVxK_k?si=z5WEfw8bCANrZB4I" target="_blank">https://youtu.be/N4AfgPVxK_k?si=z5WEfw8bCANrZB4I</a></p>
+    <p>Sound Japanese By Izno AOV: <a href="https://youtu.be/w5v0ur1sIWc?si=lSNNmwB9bUaXUqAf" target="_blank">https://youtu.be/w5v0ur1sIWc?si=lSNNmwB9bUaXUqAf</a></p>
+    <h13>Mod Map Giảm Lag LQ Cực Đẹp</h13>
+<div class="modmap-container">
+    <img src="mapxanh.jpg" alt="Mod Map Xanh - Đại Dương">
+    <a href="mod map xanh.zip" download="mod map xanh.zip">
+    <button>Tải Mod Map Xanh Lè</button>
+</div>
+<div class="modmap-container">
+    <img src="maptrang.jpg" alt="Mod Map Trắng - Bão Tuyết">
+    <a href="mod map trắng.zip" download="mod map trắng.zip">
+    <button>Tải Mod Map Bạch Tạng</button>
+</div>
+<div class="modmap-container">
+    <img src="mapden.jpg" alt="Mod Map Đen - Trời Đêm">
+    <a href="mod map đen.zip" download="mod map đen.zip">
+    <button>Tải Mod Map Đen Hôi</button>
+</div>
+    <div class="container">
+        <h14>Tải Tool Giải Mã & Mã Hóa Liên Quân</h14>
+    <a href="Giải mã&mã hóa liên quân_.py" download="Giải mã&mã hóa liên quân_.py">
+        <button>Tải Tool AOV - Nhấn Vào Đây</button>
+    </a>    
+    <p>Thư viện cần thiết để chạy tool</p>
+    <pre>
+B1: pip install pip
+B2: pip install --upgrade pip
+B3: pip install pyzstd==0.15.4
+    </pre>
+        </div>
+    <div class="linkdutup2-container">
+    <div class="linkdutup2" onclick="window.open('https://youtube.com/@dnturbo02', '_blank')"></div>
+    <span class="linkdutup-text">•KN Turbo•</span>
+</div>
+<div class="linkdutup-container">
+    <div class="linkdutup" onclick="window.open('https://youtube.com/@mavuongdaccau', '_blank')"></div>
+    <span class="linkdutup-text">•TulenĐặcCầu•</span>
+</div>
+
+    <script>
+        function handleFileSelect() {
+            const fileInput = document.getElementById('fileInput');
+            const status = document.getElementById('status');
+
+            if (fileInput.files.length) {
+                status.textContent = '✅ Tệp đã được nhận!';
+                status.classList.add('show');
+                setTimeout(() => {
+                    status.classList.add('fade')}, 5000); 
+            }
+        }
+
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+
+        function addPair() {
+            const replacementContainer = document.getElementById('replacementContainer');
+            const pairDiv = document.createElement('div');
+            pairDiv.className = 'replacement-pair';
+            pairDiv.innerHTML = `
+                <input type="text" placeholder="Chữ Cần Sửa">
+                <input type="text" placeholder="Chữ Thay Thế">
+                <button class="remove-pair" onclick="removePair(this)">Xóa Cặp</button>
+            `;
+            replacementContainer.appendChild(pairDiv);    
+        }
+
+        function removePair(button) {
+            const pairDiv = button.parentElement;
+            pairDiv.remove();
+        }
+
+        async function replaceText() {
+            const fileInput = document.getElementById('fileInput');
+            const replacementContainer = document.getElementById('replacementContainer');
+            const pairs = replacementContainer.querySelectorAll('.replacement-pair');
+            const status = document.getElementById('status');
+
+            if (!fileInput.files.length) {
+                alert('Vui lòng chọn tệp zip.');
+                return;
+            }
+
+            const replacements = Array.from(pairs).map(pair => {
+                const oldText = pair.querySelector('input:nth-child(1)').value;
+                const newText = pair.querySelector('input:nth-child(2)').value;
+                return { oldText, newText };
+            });
+
+            for (const { oldText, newText } of replacements) {
+                if (oldText === '' || newText === '') {
+                    alert('Vui lòng nhập đầy đủ chữ cần sửa và chữ thay thế cho mỗi cặp.');
+                    return;
+                }
+            }
+
+            const zipFile = fileInput.files[0];
+            const zip = new JSZip();
+            const zipReader = new FileReader();
+
+            zipReader.onload = async function(e) {
+                try {
+                    const zipContent = e.target.result;
+                    const unzipped = await zip.loadAsync(zipContent);
+                    const newZip = new JSZip();
+
+                    for (const [filename, file] of Object.entries(unzipped.files)) {
+                        if (!file.dir) {
+                            if (filename.endsWith('.xml') || filename.endsWith('.txt')) {
+                                let fileContent = await file.async('text');
+                                for (const { oldText, newText } of replacements) {
+                                    fileContent = fileContent.replace(new RegExp(oldText, 'g'), newText);
+                                }
+                                newZip.file(filename, fileContent);
+                            } else {
+                                newZip.file(filename, await file.async('blob'));
+                            }
+                        } else {
+                            newZip.folder(filename);
+                        }
+                    }
+
+                    const updatedZipContent = await newZip.generateAsync({ type: 'blob' });
+                    saveAs(updatedZipContent, 'MOD ĐÃ XONG BÚ THÔI.zip');
+
+                    status.textContent = '✅ Tệp đã mód xong';
+                    status.classList.add('show');
+                    setTimeout(() => {
+                        status.classList.remove('show');
+                    }, 5000);
+                } catch (error) {
+                    console.error('Lỗi khi xử lý tệp zip:', error);
+                    alert('Đã xảy ra lỗi khi xử lý tệp zip.');
+                }
+            };
+
+            zipReader.readAsArrayBuffer(zipFile);
+        }
+
+
+    async function processXmlZip() {
+    const xmlZipInput = document.getElementById('xmlZipInput');
+    const xmlOutput = document.getElementById('xmlOutput');
+    const modOption = document.querySelector('input[name="modOption"]:checked').value;
+
+    if (!xmlZipInput.files.length) {
+        alert('Vui lòng chọn tệp zip XML.');
+        return;
+    }
+
+    const zipFile = xmlZipInput.files[0];
+    const zip = new JSZip();
+    const zipContent = await zip.loadAsync(zipFile);
+
+    const files = Object.keys(zipContent.files);
+    const xmlFiles = files.filter(filename => filename.endsWith('.xml'));
+
+    for (let filename of xmlFiles) {
+        let file = zipContent.files[filename];
+        let xmlString;
+
+        try {
+            xmlString = await file.async('text');
+        } catch (error) {
+            console.warn(`Không thể đọc tệp: ${filename}. Bỏ qua.`);
+            continue;
+        }
+
+        let parser = new DOMParser();
+        let xmlDoc;
+
+        try {
+            xmlDoc = parser.parseFromString(xmlString, "text/xml");
+            if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
+                throw new Error("Error parsing XML");
+            }
+        } catch (error) {
+            console.warn(`Không thể phân tích tệp XML: ${filename}. Bỏ qua.`);
+            continue;
+        }
+
+        let tracks = xmlDoc.getElementsByTagName("Track");
+        let tracksToDuplicate = [];
+
+        Array.from(tracks).forEach(track => {
+            const eventType = track.getAttribute('eventType');
+            if (eventType === 'TriggerParticleTick' || (modOption === 'both' && eventType === 'TriggerParticle')) {
+                tracksToDuplicate.push(track);
+            }
+        });
+
+        tracksToDuplicate.forEach(track => {
+            let newTracks = [];
+            for (let i = 0; i < 15; i++) {
+                let newTrack = track.cloneNode(true);
+                newTracks.push(newTrack);
+            }
+
+            let parentElement = track.parentNode;
+            newTracks.forEach(newTrack => {
+                parentElement.appendChild(newTrack);
+                let blankLine = document.createTextNode("\n");
+                parentElement.appendChild(blankLine);
+            });
+
+            newTracks.forEach(newTrack => {
+                let comment = document.createComment(" Tulen Dac Cau");
+                parentElement.appendChild(comment);
+            });
+        });
+
+        let serializer = new XMLSerializer();
+        let newXmlString = serializer.serializeToString(xmlDoc);
+        zip.file(filename, newXmlString);
+        xmlOutput.textContent += `Processed File: ${filename}\n`;
+    }
+
+    zip.generateAsync({ type: "blob" }).then(content => {
+        let link = document.createElement('a');
+        link.href = URL.createObjectURL(content);
+        link.download = 'sángđậmEFFect.zip';
+        link.click();
+    });
+}
+
+async function processXmlZip2() {
+    const xmlZipInput = document.getElementById('xmlZipInput');
+    const xmlOutput = document.getElementById('xmlOutput');
+    const modOption2 = document.querySelector('input[name="modOption2"]:checked').value;
+
+    if (!xmlZipInput.files.length) {
+        alert('Vui lòng chọn tệp zip XML.');
+        return;
+    }
+
+    const zipFile = xmlZipInput.files[0];
+    const zip = new JSZip();
+    const zipContent = await zip.loadAsync(zipFile);
+
+    const files = Object.keys(zipContent.files);
+    const xmlFiles = files.filter(filename => filename.endsWith('.xml'));
+
+    for (let filename of xmlFiles) {
+        let file = zipContent.files[filename];
+        let xmlString;
+
+        try {
+            xmlString = await file.async('text');
+        } catch (error) {
+            console.warn(`Không thể đọc tệp: ${filename}. Bỏ qua.`);
+            continue;
+        }
+
+        let parser = new DOMParser();
+        let xmlDoc;
+
+        try {
+            xmlDoc = parser.parseFromString(xmlString, "text/xml");
+            if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
+                throw new Error("Error parsing XML");
+            }
+        } catch (error) {
+            console.warn(`Không thể phân tích tệp XML: ${filename}. Bỏ qua.`);
+            continue;
+        }
+
+        let tracks = xmlDoc.getElementsByTagName("Track");
+        let tracksToDuplicate = [];
+
+        Array.from(tracks).forEach(track => {
+            const eventType = track.getAttribute('eventType');
+            if (eventType === 'TriggerParticleTick' || (modOption2 === 'both' && eventType === 'TriggerParticle')) {
+                tracksToDuplicate.push(track);
+            }
+        });
+
+        tracksToDuplicate.forEach(track => {
+            let resourceNameNode = track.querySelector('String[name="resourceName"]');
+            if (resourceNameNode) {
+                let resourceName = resourceNameNode.getAttribute('value');
+                let match = resourceName.match(/prefab_skill_effects\/hero_skill_effects\/(\d{3}_\w+)\//);
+                if (match) {
+                    let heroIdWithName = match[1];
+                    let heroId = heroIdWithName.split('_')[0];
+                    let effectPath = resourceName.split('/').slice(3).join('/'); // giữ nguyên phần "code hiệu ứng"
+                    let parentElement = track.parentNode;
+
+                    for (let i = 1; i <= 20; i++) {
+                        let newTrack = track.cloneNode(true);
+                        let newResourceName = `prefab_skill_effects/hero_skill_effects/${heroIdWithName}/${heroId}${String(i).padStart(2, '0')}/${effectPath}`;
+                        newTrack.querySelector('String[name="resourceName"]').setAttribute('value', newResourceName);
+
+                        parentElement.appendChild(newTrack);
+                        let blankLine = document.createTextNode("\n");
+                        parentElement.appendChild(blankLine);
+
+                        let comment = document.createComment(" Tulen Dac Cau");
+                        parentElement.appendChild(comment);
+                    }
+                }
+            }
+        });
+
+        let serializer = new XMLSerializer();
+        let newXmlString = serializer.serializeToString(xmlDoc);
+        zip.file(filename, newXmlString);
+        xmlOutput.textContent += `Processed File: ${filename}\n`;
+    }
+
+    zip.generateAsync({ type: "blob" }).then(content => {
+        let link = document.createElement('a');
+        link.href = URL.createObjectURL(content);
+        link.download = 'SKINThậpCẩm.zip';
+        link.click();
+    });
+}
+
+function modifyFile() {
+    const fileInput = document.getElementById('fileInput');
+    const heroSelect = document.getElementById('heroSelect');
+    const skinSelect = document.getElementById('skinSelect');
+    const downloadLink = document.getElementById('downloadLink');
+
+    if (!fileInput.files.length) {
+        alert('Please select a file.');
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+        const contents = new Uint8Array(event.target.result);
+        const hero = heroSelect.value.split('_');
+        const heroId = hero[0];
+        const heroName = hero[1];
+        const skinId = skinSelect.value;
+
+        const oldPrefab1 = `VPrefab_Characters/Prefab_Hero/${heroId}_${heroName}/${heroId}1_${heroName}_LOD1`;
+        const oldPrefab2 = `VPrefab_Characters/Prefab_Hero/${heroId}_${heroName}/${heroId}1_${heroName}_LOD2`;
+        const oldPrefab3 = `VPrefab_Characters/Prefab_Hero/${heroId}_${heroName}/${heroId}1_${heroName}_LOD3`;
+
+        const newPrefab1 = `VPrefab_Characters/Prefab_Hero/${heroId}_${heroName}/${heroId}${skinId}_${heroName}_LOD1`;
+        const newPrefab2 = `VPrefab_Characters/Prefab_Hero/${heroId}_${heroName}/${heroId}${skinId}_${heroName}_LOD2`;
+        const newPrefab3 = `VPrefab_Characters/Prefab_Hero/${heroId}_${heroName}/${heroId}${skinId}_${heroName}_LOD3`;
+
+        
+        const oldPrefab1Bytes = new TextEncoder().encode(oldPrefab1);
+        const oldPrefab2Bytes = new TextEncoder().encode(oldPrefab2);
+        const oldPrefab3Bytes = new TextEncoder().encode(oldPrefab3);
+
+        const newPrefab1Bytes = new TextEncoder().encode(newPrefab1);
+        const newPrefab2Bytes = new TextEncoder().encode(newPrefab2);
+        const newPrefab3Bytes = new TextEncoder().encode(newPrefab3);
+
+        
+        let modifiedContents = contents.slice();
+
+        
+        function replaceBytes(source, target, replacement) {
+            for (let i = 0; i <= source.length - target.length; i++) {
+                let match = true;
+                for (let j = 0; j < target.length; j++) {
+                    if (source[i + j] !== target[j]) {
+                        match = false;
+                        break;
+                    }
+                }
+                if (match) {
+                    for (let k = 0; k < replacement.length; k++) {
+                        source[i + k] = replacement[k];
+                    }
+                }
+            }
+        }
+
+        
+        replaceBytes(modifiedContents, oldPrefab1Bytes, newPrefab1Bytes);
+        replaceBytes(modifiedContents, oldPrefab2Bytes, newPrefab2Bytes);
+        replaceBytes(modifiedContents, oldPrefab3Bytes, newPrefab3Bytes);
+
+        
+        const blob = new Blob([modifiedContents], { type: 'application/octet-stream' });
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = 'tModSkin_' + file.name;
+        downloadLink.click();  
+    };
+
+    reader.readAsArrayBuffer(file);
+}
+
+function downloadZip9() {
+            var select = document.getElementById("championSelect");
+            var selectedFile = select.value;
+            if (selectedFile) {
+                window.location.href = selectedFile;
+            } else {
+                alert("Vui lòng chọn nhân vật.");
+            }
+        }
+        
+        document.getElementById('modButton').addEventListener('click', async () => {
+        const originalFile = document.getElementById('originalFile').files[0];
+        const modFile = document.getElementById('modFile').files[0];
+        
+        if (!originalFile || !modFile) {
+            alert('Please select both files.');
+            return;
+        }
+
+        const originalBytes = new Uint8Array(await originalFile.arrayBuffer());
+        const modBytes = new Uint8Array(await modFile.arrayBuffer());
+
+        const startString = 'ArtPrefabLOD0';
+        const endString = '_LOD3';
+        const bytesBeforeStart = 8; 
+        const startBytes = new TextEncoder().encode(startString);
+        const endBytes = new TextEncoder().encode(endString);
+
+        const originalRange = findRange(originalBytes, startBytes, endBytes, bytesBeforeStart);
+        const modRange = findRange(modBytes, startBytes, endBytes, bytesBeforeStart);
+
+        if (!originalRange || !modRange) {
+            alert('Could not find the specified ranges in one or both files.');
+            return;
+        }
+
+        const moddedBytes = new Uint8Array(originalBytes.length - (originalRange.end - originalRange.start) + (modRange.end - modRange.start));
+        moddedBytes.set(originalBytes.slice(0, originalRange.start), 0);
+        moddedBytes.set(modBytes.slice(modRange.start, modRange.end), originalRange.start);
+        moddedBytes.set(originalBytes.slice(originalRange.end), originalRange.start + (modRange.end - modRange.start));
+
+        const blob = new Blob([moddedBytes], { type: 'application/octet-stream' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'SKINCHẾ_actorinfo.bytes';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    });
+
+    function findRange(array, startBytes, endBytes, bytesBeforeStart) {
+        const start = indexOf(array, startBytes) - bytesBeforeStart;
+        if (start < 0) return null;
+
+        const end = indexOf(array, endBytes, start + startBytes.length + bytesBeforeStart);
+        if (end === -1) return null;
+
+        return { start, end: end + endBytes.length };
+    }
+
+    function indexOf(array, searchBytes, fromIndex = 0) {
+        for (let i = fromIndex; i <= array.length - searchBytes.length; i++) {
+            let found = true;
+            for (let j = 0; j < searchBytes.length; j++) {
+                if (array[i + j] !== searchBytes[j]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) return i;
+        }
+        return -1;
+    }
+    
+    function downloadModCamXa() {
+            const zoomLevelSelect = document.getElementById('zoomLevel');
+            const fileUrl = zoomLevelSelect.value;
+            const link = document.createElement('a');
+            link.href = fileUrl;
+            link.download = fileUrl.split('/').pop(); 
+            link.click();
+        }
+        
+        document.getElementById('download-MODRANK').addEventListener('click', function() {
+        const selectElement = document.getElementById('ModRank-select');
+        const selectedValue = selectElement.value;
+        
+        const a = document.createElement('a');
+        a.href = selectedValue;
+        a.download = selectedValue;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    });
+    
+    function downloadFileModLinhQuaiTru(filename) {
+            const link = document.createElement('a');
+            link.href = filename;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        function createModVideosex() {
+    const fileInput = document.getElementById('videoUpload');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Please select a video file.');
+        return;
+    }
+
+    const folderName = 'Mod sảnh video/files/Extra/2019.V2/ISPDiff/LobbyMovie/';
+    const zip = new JSZip();
+    const folder = zip.folder(folderName);
+
+    const newFileName = 'PvpBtnDynamic132.mp4';
+
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.onload = function(event) {
+        const arrayBuffer = event.target.result;
+
+        folder.file(newFileName, arrayBuffer);
+
+        zip.generateAsync({ type: 'blob' }).then(function(content) {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(content);
+            link.download = 'Mod video Sảnh_LQ.zip';
+            link.click();
+        });
+    };
+}
+
+function downloadModSoundAOV(link) {
+            window.location.href = link;
+        }
+        
+    </script>
+    <script src="9999.js"></script>
+</body>
+</html>
