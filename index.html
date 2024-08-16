@@ -1115,21 +1115,22 @@ function downloadModSoundAOV(link) {
     }, false);
 
     function detectDevTools() {
-        const devtools = /./;
-        devtools.toString = function() {
+        const start = performance.now();
+
+        debugger; 
+
+        const end = performance.now();
+
+        if (end - start > 100) {
             devToolsOpened = true;
             alert("Phát Hiện DevTool. Web Đã Bị Lỗi!");
             window.location.reload();
-        };
-
-        console.log(devtools);
+        }
     }
 
-    detectDevTools();
-
     setInterval(function() {
-        if (devToolsOpened) {
-            window.location.reload();
+        if (!devToolsOpened) {
+            detectDevTools();
         }
     }, 1000);
 })();
