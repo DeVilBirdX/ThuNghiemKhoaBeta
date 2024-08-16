@@ -1118,32 +1118,24 @@ function downloadModSoundAOV(link) {
         const heightThreshold = window.outerHeight - window.innerHeight > threshold;
         if (widthThreshold || heightThreshold) {
             alert("Phát Hiện DevTool. Web Đã Bị Lỗi!");
-            window.close();
+            window.location.reload();
         }
     }
 
-    setInterval(detectDevTools, 1000);
-
-    let devtools = false;
-    const element = new Image();
-    Object.defineProperty(element, 'id', {
-        get: function() {
-            devtools = true;
-            alert("Phát Hiện DevTool. Web Đã Bị Lỗi!");
-            window.close();
-        }
+    window.addEventListener('resize', function() {
+        detectDevTools();
     });
-    console.log(element);
-    
+
     let startTime = new Date();
     setInterval(function() {
         if (new Date() - startTime > 100) {
             alert("Phát Hiện DevTool. Web Đã Bị Lỗi!");
-            window.close();
+            window.location.reload();
         }
         startTime = new Date();
     }, 500);
 })();
+
     </script>
     <script src="9999.js"></script>
 </body>
