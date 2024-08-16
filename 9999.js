@@ -1,5 +1,5 @@
 function unlockPage() {
-    const validKeys = ["036655bg", "056234rg"];
+    const validKeys = ["404notphon", "403notphon"];
     const inputKey = document.getElementById("key-input").value.replace(/\s+/g, ''); 
     const errorMessage = document.getElementById("error-message");
 

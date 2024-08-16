@@ -1090,6 +1090,26 @@ function downloadModSoundAOV(link) {
             .then(html => {
                 document.getElementById('lockscreen-container').innerHTML = html;
             });
+            
+    document.addEventListener('keydown', function(e) {
+        if (
+            e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) || 
+            (e.ctrlKey && e.key === 'U') ||
+            (e.ctrlKey && e.key === 'C') || 
+            (e.ctrlKey && e.key === 'P') || 
+            (e.ctrlKey && e.key === 'S') || 
+            (e.ctrlKey && e.shiftKey && e.key === 'S')
+        ) {
+            e.preventDefault();
+            alert("Lỗi! Không được hỗ trợ.");
+        }
+    }, false);
+
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        alert("Lỗi! Không được hỗ trợ.");
+    }, false);
     </script>
     <script src="9999.js"></script>
 </body>
