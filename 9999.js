@@ -1,9 +1,9 @@
 function unlockPage() {
-    const validKeys = ["dcTulen1bg", "KnTurbo8b9"];
-    const inputKey = document.getElementById("key-input").value;
+    const validKeys = ["DcTulen1bg", "KnTurbo8b9"];
+    const inputKey = document.getElementById("key-input").value.replace(/\s+/g, ''); 
     const errorMessage = document.getElementById("error-message");
 
-    if (validKeys.includes(inputKey)) {
+    if (validKeys.map(key => key.replace(/\s+/g, '')).includes(inputKey)) {
         document.getElementById("lock-screen").style.display = "none";
         document.getElementById("content").style.display = "block";
     } else {
